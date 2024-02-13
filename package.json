@@ -1,0 +1,8 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@xenova/transformers": "^2.15.0",
+    "koa": "^2.15.0",
+    "koa-bodyparser": "^4.4.1"
+  }
+}
