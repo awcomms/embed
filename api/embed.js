@@ -6,7 +6,15 @@ export async function GET(request) {
     const text = await request.text();
     console.log(text);
     if (text) {
-      const res = await embed(text)
+      const extractor = await pipeline(
+        "feature-extraction",
+        "Xenova/bge-base-en-v1.5"
+      );
+      const { data } = await extractor(text, {
+        pooling: "mean",
+        normalize: true,
+      });
+      const res = Object.values(data);
       // Check if the header "b" is present
       const b = request.headers.get("b");
       if (b) {
