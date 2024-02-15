@@ -2,7 +2,7 @@ import Koa from "koa";
 import bodyParser from "koa-bodyparser";
 import { embed } from "./embed";
 
-const app = new Koa();
+const app = new Koa()
 
 // Use bodyparser middleware to parse JSON request
 app.use(bodyParser({ enableTypes: ["text"] }));
