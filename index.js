@@ -1,7 +1,7 @@
 import Koa from "koa";
 import bodyParser from "koa-bodyparser";
-import http from "http";
-import { pipeline } from "@xenova/transformers";
+import { embed } from "./embed";
+
 const app = new Koa();
 
 // Use bodyparser middleware to parse JSON request
@@ -14,22 +14,15 @@ app.use(async (ctx) => {
     const text = ctx.request.body;
     console.log(text);
     if (text) {
-      const extractor = await pipeline(
-        "feature-extraction",
-        "Xenova/bge-base-en-v1.5"
-      );
-      const { data } = await extractor(text, {
-        pooling: "mean",
-        normalize: true,
-      });
+      const res = await embed(text);
       // Check if the header "b" is present
       const b = ctx.request.header.b;
       if (b) {
         // Return a Buffer of the embedding
-        ctx.body = Buffer.from(data);
+        ctx.body = Buffer.from(res);
       } else {
         // Return a json array of the embedding
-        ctx.body = Object.values(data);
+        ctx.body = res;
       }
     } else {
       // Send error if there's no text property on the body
