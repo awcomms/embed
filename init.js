@@ -1,3 +1,3 @@
-import { embed } from "./embed";
+import { embed } from "../embed";
 
 embed('')
