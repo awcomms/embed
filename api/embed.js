@@ -1,3 +1,5 @@
+import {pipeline} from "@xenova/transformers"
+
 const embed = async (text) => {
   const extractor = await pipeline(
     "feature-extraction",

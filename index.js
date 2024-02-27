@@ -1,5 +1,6 @@
 import Koa from "koa";
 import bodyParser from "koa-bodyparser";
+import {pipeline} from "@xenova/transformers"
 
 const app = new Koa()
 
