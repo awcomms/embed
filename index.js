@@ -1,11 +1,23 @@
 import Koa from "koa";
 import bodyParser from "koa-bodyparser";
-import { embed } from "../embed";
 
 const app = new Koa()
 
 // Use bodyparser middleware to parse JSON request
 app.use(bodyParser({ enableTypes: ["text"] }));
+
+const embed = async (text) => {
+  const extractor = await pipeline(
+    "feature-extraction",
+    "Xenova/bge-base-en-v1.5"
+  );
+  const { data } = await extractor(text, {
+    pooling: "mean",
+    normalize: true,
+  });
+  return Object.values(data);
+};
+
 
 // Define POST request route to handle the text
 app.use(async (ctx) => {
