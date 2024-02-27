@@ -15,6 +15,7 @@ app.use(async (ctx) => {
     console.log(text);
     if (text) {
       const res = await embed(text);
+      console.debug('embedding', embed)
       // Check if the header "b" is present
       const b = ctx.request.header.b;
       if (b) {
