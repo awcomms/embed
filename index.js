@@ -1,6 +1,6 @@
 import Koa from "koa";
 import bodyParser from "koa-bodyparser";
-import { embed } from "./embed";
+import { embed } from "../embed";
 
 const app = new Koa()
 
