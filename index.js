@@ -9,7 +9,7 @@ app.use(bodyParser({ enableTypes: ["text"] }));
 const embed = async (text) => {
   const extractor = await pipeline(
     "feature-extraction",
-    "Xenova/bert-base-uncased"
+    "Xenova/gte-base"
   );
   const { data } = await extractor(text, {
     pooling: "mean",
