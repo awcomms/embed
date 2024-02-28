@@ -18,7 +18,7 @@ const embed = async (text) => {
   return Object.values(data);
 };
 
-app.post(async (ctx) => {
+app.use(async (ctx) => {
   try {
     const text = ctx.request.body;
     console.log(text);
